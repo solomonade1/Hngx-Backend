@@ -20,8 +20,8 @@ app.get("/api", (req, res) => {
     current_day: currentDay,
     utc_time: getCurrentUTCWithValidation(),
     track: track,
-    github_file_url: "https://github.com/username/repo/blob/main/file_name.ext",
-    github_repo_url: "https://github.com/username/repo",
+    github_file_url: "https://github.com/solomonade1/Hngx-Backend/blob/stage-one/index.js",
+    github_repo_url: "https://github.com/solomonade1/Hngx-Backend/tree/stage-one",
     status_code: 200,
   };
 
