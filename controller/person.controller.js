@@ -4,13 +4,13 @@ import { createError } from "../utils/createError.js";
 // Create endpoint to add a new person
 export const addPerson = async (req, res, next) => {
   try {
-    const { name, username, email } = req.body;
-    const foundPerson = await Person.findOne({ username, email });
+    const { name } = req.body;
+    const foundPerson = await Person.findOne({ name });
     if (foundPerson) {
-      return next(createError(400, "username already exist!!!"));
+      return next(createError(400, "Name already exist!!!"));
     }
 
-    const person = new Person({ name, username, email });
+    const person = new Person({ name});
     await person.save();
     res.json(person);
   } catch (error) {
@@ -32,10 +32,10 @@ export const getSinglePerson = async (req, res, next) => {
 
 export const updateSinglePerson = async (req, res, next) => {
   try {
-    const { name, username, email } = req.body;
+    const { name } = req.body;
     const person = await Person.findByIdAndUpdate(
       req.params.user_id,
-      { name, username, email },
+      { name },
       { new: true }
     );
     if (!person) {
