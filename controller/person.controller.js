@@ -60,3 +60,13 @@ export const deleteSinglePerson = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getAllPersons = async (req, res, next) => {
+  try {
+    const person = await Person.find();
+  
+    res.status(200).json(person);
+  } catch (error) {
+    next(error);
+  }
+};
