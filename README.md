@@ -20,7 +20,8 @@
 
  This the UML image for the APP
 
-![Node.js Logo](public/uml-img.png)
+![Node.js Logo](public/uml.png)
+
 
 ---
 ---
@@ -58,7 +59,7 @@ A PUT request to update the person in the DB.
 ---
 - **DELETE Delete person**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/person/65013ffb4633c2c1f676eee0
+https://hngx-stage-two-411y.onrender.com/v1/api/person/:user_id
 ```
 
 A DELETE request to delete User by ID
@@ -66,7 +67,7 @@ A DELETE request to delete User by ID
 ---
 - **GET Get a person**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/person/64ffa30118b32c761d25810f
+https://hngx-stage-two-411y.onrender.com/v1/api/person/:user_id
 ```
 A GET request to get a single user by it ID
 
@@ -78,6 +79,38 @@ https://hngx-stage-two-411y.onrender.com/v1/api/persons
 A GET request to fetch all users
 
 ---
+
+### MONGODB is use for the DATABASE
+
+---
+
+The APP hosted [url](https://hngx-stage-two-411y.onrender.com)
+
+
+---
+
+**One  of the take of the projject is the usage of mongooge Schema property. find and findOne.**
+
+I initially used Person.find({name, email}) but I'm the desiredable response.  <br>
+<br>
+Why: The **find** method in Mongoose doesn't return null when no documents are found; it returns an empty array. As a result, the conditional check if (foundPerson) will always be truthy, even if no person with the given username and email exists.
+
+I have two solution 
+```
+1.
+ const foundPerson = await Person.find({ username email });
+
+    if (foundPerson.length > 0) {
+      return next(createError(400, "Username or email already exist!!!"));
+    }
+2.  
+    const foundPerson = await Person.findOne({username, email});
+    if (foundPerson) {
+      return res.status(400).json({ message: "Username or email already exists!!!" });
+    }
+
+I used the second option. 
+```
 
 
 
