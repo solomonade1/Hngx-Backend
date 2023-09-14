@@ -20,7 +20,7 @@
 
  This the UML image for the APP
 
-![Node.js Logo](public/uml.png)
+![Node.js Logo](public/stage-uml.png)
 
 
 ---
