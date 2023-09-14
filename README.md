@@ -33,29 +33,33 @@
 
     - endpoint
 ```sh
-https://hngx-stage-two-411y.onrender.com/v1/api/person
+https://hngx-stage-two-411y.onrender.com/api
 ```
 A POST request to add PERSON to the DB. 
 
 
 ```
-"name": "Janet"
+"name": "Janet",
+"username": "Okin",
+"email": "janetOkon@gmail.com"
 ```
 ---
 - **PUT Update Person**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/person/:user_id
+https://hngx-stage-two-411y.onrender.com/api/:user_id
 ```
 A PUT request to update the person in the DB.
 
 ```
     "name" : "tunddeee",
+    "username": "tundex1",
+    "email": "tundex1@gmail.com"
 ```
 
 ---
 - **DELETE Delete person**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/person/:user_id
+https://hngx-stage-two-411y.onrender.com/api/:user_id
 ```
 
 A DELETE request to delete User by ID
@@ -63,14 +67,14 @@ A DELETE request to delete User by ID
 ---
 - **GET Get a person**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/person/:user_id
+https://hngx-stage-two-411y.onrender.com/api/:user_id
 ```
 A GET request to get a single user by it ID
 
 ---
 - **GET Get All users**
 ```
-https://hngx-stage-two-411y.onrender.com/v1/api/persons
+https://hngx-stage-two-411y.onrender.com/api/users
 ```
 A GET request to fetch all users
 
@@ -87,7 +91,7 @@ The APP hosted [url](https://hngx-stage-two-411y.onrender.com)
 
 **One  of the take of the projject is the usage of mongooge Schema property. find and findOne.**
 
-I initially used Person.find({name}) but I'm the desiredable response.  <br>
+I initially used Person.find({name, email}) but I'm the desiredable response.  <br>
 <br>
 Why: The **find** method in Mongoose doesn't return null when no documents are found; it returns an empty array. As a result, the conditional check if (foundPerson) will always be truthy, even if no person with the given username and email exists.
 
@@ -97,7 +101,7 @@ I have two solution
  const foundPerson = await Person.find({ username email });
 
     if (foundPerson.length > 0) {
-      return next(createError(400, "name!!"));
+      return next(createError(400, "Username or email already exist!!!"));
     }
 2.  
     const foundPerson = await Person.findOne({username, email});

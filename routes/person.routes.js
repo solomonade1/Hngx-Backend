@@ -4,10 +4,11 @@ import { addPerson, deleteSinglePerson, getAllPersons, getSinglePerson, updateSi
 const personRouter = express.Router()
 
 personRouter.post("/", addPerson)
+personRouter.get("/users", getAllPersons )
 personRouter.get("/:user_id", getSinglePerson )
 personRouter.put("/:user_id", updateSinglePerson )
 personRouter.delete("/:user_id", deleteSinglePerson )
-personRouter.get("/persons", getAllPersons )
+
 
 
 export default personRouter;
