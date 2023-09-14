@@ -25,7 +25,7 @@ app.use(express.json());
 // app.use("/api/v1", urlRouter);
 // app.use("/api/v1", authRoute);
 
-app.use("/v1/api/", personRouter);
+app.use("/api/", personRouter);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

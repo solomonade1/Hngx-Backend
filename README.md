@@ -39,9 +39,7 @@ A POST request to add PERSON to the DB.
 
 
 ```
-"name": "Janet",
-"username": "Okin",
-"email": "janetOkon@gmail.com"
+"name": "Janet"
 ```
 ---
 - **PUT Update Person**
@@ -52,8 +50,6 @@ A PUT request to update the person in the DB.
 
 ```
     "name" : "tunddeee",
-    "username": "tundex1",
-    "email": "tundex1@gmail.com"
 ```
 
 ---
@@ -91,7 +87,7 @@ The APP hosted [url](https://hngx-stage-two-411y.onrender.com)
 
 **One  of the take of the projject is the usage of mongooge Schema property. find and findOne.**
 
-I initially used Person.find({name, email}) but I'm the desiredable response.  <br>
+I initially used Person.find({name}) but I'm the desiredable response.  <br>
 <br>
 Why: The **find** method in Mongoose doesn't return null when no documents are found; it returns an empty array. As a result, the conditional check if (foundPerson) will always be truthy, even if no person with the given username and email exists.
 
@@ -101,7 +97,7 @@ I have two solution
  const foundPerson = await Person.find({ username email });
 
     if (foundPerson.length > 0) {
-      return next(createError(400, "Username or email already exist!!!"));
+      return next(createError(400, "name!!"));
     }
 2.  
     const foundPerson = await Person.findOne({username, email});
